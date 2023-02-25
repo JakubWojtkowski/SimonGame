@@ -1,4 +1,4 @@
-const buttonColours = ["red", "blue", "green", "yellow"];
+const buttonColors = ["red", "blue", "green", "yellow"];
 
 const gamePattern = [];
 
@@ -11,17 +11,26 @@ document.addEventListener("keydown", function (e) {
 });
 
 $("div.btn").click(function () {
-    const userChosenColour = $(this).attr("id");
-    console.log(userChosenColour);
-    userClickedPattern.push(userChosenColour);
+    const userChosenColor = $(this).attr("id");
+    userClickedPattern.push(userChosenColor);
+    playSound(userChosenColor);
+    animatePress(userChosenColor);
 });
 
 function nextSequence() {
     let randomNumber = Math.round(Math.random() * 3);
-    let randomChosenColour = buttonColours[randomNumber];
-    console.log(randomChosenColour);
-    gamePattern.push(randomChosenColour);
-    $(`div#${randomChosenColour}`).fadeOut(100).fadeIn(100); // flash effect
-    var audio = new Audio(`./sounds/${randomChosenColour}.mp3`);
+    let randomChosenColor = buttonColors[randomNumber];
+    gamePattern.push(randomChosenColor);
+    $(`div#${randomChosenColor}`).fadeOut(100).fadeIn(100); // flash effect
+    var audio = new Audio(`./sounds/${randomChosenColor}.mp3`);
     audio.play();
+}
+
+function playSound(colorName) {
+    var audio = new Audio(`./sounds/${colorName}.mp3`);
+    audio.play();
+}
+
+const animatePress = (currentColor) => {
+    $(`.${currentColor}`).addClass("pressed");
 }
