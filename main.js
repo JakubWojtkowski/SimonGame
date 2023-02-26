@@ -33,8 +33,6 @@ function checkAnswer(currentLevel) {
 
     if (userClickedPattern[currentLevel] === gamePattern[currentLevel]) {
 
-        // console.log("correct");
-
         if (userClickedPattern.length === gamePattern.length) {
 
             setTimeout(function () {
